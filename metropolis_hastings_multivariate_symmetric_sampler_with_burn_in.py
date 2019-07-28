@@ -14,11 +14,9 @@ Starta
 
 """
 
-import pandas as pd
 import scipy.stats as sp
 import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 
 # Mean vector
 mean = [2.0, 2.0]
