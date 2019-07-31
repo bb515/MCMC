@@ -13,6 +13,7 @@ import scipy.stats as sp
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+import time
 
 # Mean vector
 mean = [2.0, 2.0]
@@ -133,6 +134,12 @@ def mhmv(mean, cov):
         
     
     
+    
+    data_mean = (np.mean(accepted_x), np.mean(accepted_y))
+    data_cov = np.cov((accepted_x), (accepted_y))
+    
+    print('mean', data_mean)
+    print('cov', data_cov)
     xedges = np.linspace(-3.0, 7.0, 100)
     yedges = np.linspace(-3.0, 7.0, 100)
     H, xedges, yedges = np.histogram2d(accepted_x, accepted_y, bins=(xedges, yedges))
@@ -146,5 +153,10 @@ def mhmv(mean, cov):
     return None
 
 
-
+t1_start = time.process_time()
 mhmv(mean, cov)
+t1_stop = time.process_time()
+
+print('time', t1_stop - t1_start)
+
+

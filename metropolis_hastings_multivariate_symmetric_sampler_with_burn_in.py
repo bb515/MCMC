@@ -17,14 +17,14 @@ Starta
 import scipy.stats as sp
 import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import axes3d
 
 # Mean vector
 mean = [2.0, 2.0]
 
 #Covariance matrix
 
-cov = [[2.0, 1.8],[1.8,2.0]]
-
+cov = [[1.0, 0.95],[0.95,1.0]]
 
 # Multivariate PDF
 sample = sp.multivariate_normal.rvs(mean, cov, 1)
@@ -82,7 +82,7 @@ def mhmv(mean, cov, chains):
         Description: Uses a simple multivariate metropolis hastings algorithm to sample from a Gaussian distribution without
         sampling directly from it. This can be used to sample from more complicated distributions which are impossible to sample from.
         """
-    samples =  60000
+    samples =  50000
     chains = 3
     
     #Accepted samples is a matrix of x and y pairs
@@ -96,10 +96,7 @@ def mhmv(mean, cov, chains):
     
     # Define the starting points of the chains
     start_points = [[0.0, -1.0], [1.0, 3.0], [4.0, -1.0]]
-        
-    #number of accepted samples
-    
-    accepted = np.zeros(chains)
+
     
     for i in range(chains):
         
@@ -130,9 +127,6 @@ def mhmv(mean, cov, chains):
                 accepted_y[i].append(w[1])
                 w_prev = w
                 post_prev = post
-                
-                # number of accepted samples for chain i
-                accepted[i] += 1
             else:
                 None
         
@@ -205,10 +199,12 @@ def mhmv(mean, cov, chains):
     
     return None
 
-
-
-
-
-
-
+t1_start = time.process_time()
 mhmv(mean, cov, 3)
+t1_stop = time.process_time()
+
+
+
+print('time', t1_stop - t1_start)
+
+
