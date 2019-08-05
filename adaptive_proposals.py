@@ -353,6 +353,6 @@ def getSamples(mean, cov, chains, samples):
 chains = 3
 
 t1_start = time.process_time()
-getSamples(mean, cov, chains, 1000)
+getSamples(mean, cov, chains, 10000)
 t1_stop = time.process_time()
 print('elapsed time', t1_stop - t1_start)
